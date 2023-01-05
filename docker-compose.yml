@@ -8,11 +8,16 @@ services:
     environment:
        - "ADMIN_PASSWORD=admin"
        - "QUERY_TIMEOUT=500000"
+       - "JVM_ARGS=-Xmx32g"
+       - "TDB=2"
+       # "FUSEKI_DATASET_1=hpa"
     ports:
         - "3030:3030"
     volumes:
       # Overwrite FUSEKI_HOME/shiro.ini for use by entrypoint
       - "./shiro.ini:/jena-fuseki/shiro.ini"
+      - "./staging:/staging:ro"
+      # "./fuseki-data:/fuseki"
 
   apacheds:
     hostname: apacheds
